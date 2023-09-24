@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+/* || RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  /* Images by default are inline elements and giving it a block display will allow us to be able to adjust the width accordingly*/
+
+  max-width: 100%;
+  /* Ensures it does not overflow its conatiner */
+
+  height: auto;
+  /* The height automatically adjusts according tyo the width */
+}
+
+/* || UTILITY CLASSES */
+.nowrap {
+  white-space: nowrap;
+  /* This prevents the highlighted inline text from breaking on different screen sizes*/
+}
+
+/* || GENERAL STYLES */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font: 1.5rem "Nunito", sans-serif;
+  /* font shorthand form combining font size and font family */
+  min-height: 100vh;
+
+  background-color: #475569;
+  background-image: radial-gradient(whitesmoke, #475569);
+
+  display: flex;
+  flex-direction: column;
+  /* Allows the elements to stack on top of each other instead of following the default order which is row */
+}
+
+header,
+footer {
+  position: sticky;
+  /*  The header and footer will remain at their places irrespective of scrolling since their parent container is the overall body in this case */
+
+  background-color: #1e293b;
+  color: whitesmoke;
+  text-align: center;
+}
+
+header {
+  top: 0;
+  /* Defines how far from the top should the header be.*/
+}
+
+nav {
+  background-color: #fff;
+  padding: 0.5rem;
+  border-bottom: 2px solid #000;
+  font-weight: bolder;
+  display: flex;
+  justify-content: space-evenly;
+  /* Puts an even space around what is basically under the nav element tag */
+}
+
+nav a,
+nav a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus {
+  color: hsla(0, 0%, 20%, 0.6);
+}
+
+main {
+  flex-grow: 1;
+  /* Fills up the page no matter what */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* || PROFILE CARD */
+.card {
+  scroll-margin-top: 8rem;
+  /* When scrollling the cards, the cards are pushed dwon from the top so that it does not scroll under the header section.*/
+
+  width: min(100%, 350px);
+  /* At the minimum it grows to a 100% width of the container and at maximum do not grow larger than 350px*/
+
+  background-color: #cbd5e1;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card figure {
+  display: flex;
+  flex-flow: column nowrap;
+  /* flex-flow combines both flex-direction and flex-wrap*/
+}
+
+.card img {
+  border: 5px double #333;
+  border-radius: 50%;
+}
+
+.card figcaption {
+  font-weight: bolder;
+  font-size: 2rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+footer {
+  bottom: 0;
+}
+
+/* || SMALL */
+@media screen and (min-width: 576px) {
+  main {
+    justify-content: center;
+    flex-flow: row wrap;
+    /* This would also be read in the other big screen media query */
+    padding: 1rem;
+  }
+
+  .card {
+    width: min(100%, 400px);
+  }
+
+  .card:last-child {
+    order: -1;
+  }
+}
+
+/* || MEDIUM */
+@media screen and (min-width: 768px) {
+  nav {
+    display: none;
+    /* This is an ipad size and all the 3 cards are visible without necessarily having the navigation bar */
+  }
+  .card {
+    width: min(100%, 325px);
+    /* The maximum value of the widths of the card is 325px */
+  }
+  .card figure {
+    flex-flow: column-reverse;
+  }
+  .card figcaption {
+    margin: 0.1rem;
+  }
+  .card p {
+    margin-top: 1rem;
+  }
+}
+
+/* || LARGE */
+@media screen and (min-width: 992px) {
+  .card {
+    width: min(100%, 400px);
+  }
+  .card:nth-child(2) {
+    order: -1;
+  }
+}
+
+/* || XL  */
+@media screen and (min-width: 1200px) {
+  .card {
+    width: min(calc(33% - 1rem), 500px);
+  }
+}
+
+/* || MOBILE DEVICE LANDSCAPE  */
+@media screen and (max-height: 425px) and (min-aspect-ratio: 7/4) {
+  /* The min-aspect-ratio 7/4 value means 7 units in the width and 4 units in the height */
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    display: none;
+  }
+
+  main{
+    flex-flow: row nowrap;
+    /* nowrap in this case means we will have only one row */
+    justify-content: space-evenly;
+    align-items: stretch;
+  }
+
+  .card{
+    width: min(calc(33% - 0.25rem), 200px);
+  }
+  
+  .card figcaption, .card p{
+    font-size: 1.25rem;
+  }
+  
+}
